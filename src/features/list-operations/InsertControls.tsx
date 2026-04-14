@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
 import { theme } from "../../theme";
 
 type Props = {
@@ -33,16 +32,20 @@ export const InsertControls: React.FC<Props> = ({
         style={styles.input}
       />
       <View style={styles.buttons}>
-        <Button
-          label="Insert Head"
+        <TouchableOpacity
+          style={[styles.button, styles.primary]}
+          activeOpacity={0.75}
           onPress={() => handleInsert(onInsertHead)}
-          style={styles.button}
-        />
-        <Button
-          label="Insert Tail"
+        >
+          <Text style={styles.label}>Insert Head</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.primary]}
+          activeOpacity={0.75}
           onPress={() => handleInsert(onInsertTail)}
-          style={styles.button}
-        />
+        >
+          <Text style={styles.label}>Insert Tail</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -63,10 +66,23 @@ const styles = StyleSheet.create({
   buttons: {
     flex: 1,
     flexDirection: "row",
+    gap: theme.spacing.xs,
   },
   button: {
     flex: 1,
-    margin: 0,
-    marginHorizontal: theme.spacing.xs,
+    paddingVertical: theme.spacing.sm + 1,
+    paddingHorizontal: theme.spacing.sm + 2,
+    borderRadius: theme.borderRadius.sm,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  primary: {
+    backgroundColor: theme.colors.primary,
+  },
+  label: {
+    color: theme.colors.text,
+    fontWeight: theme.fontWeight.semibold,
+    fontSize: theme.fontSize.sm,
+    letterSpacing: 0.2,
   },
 });

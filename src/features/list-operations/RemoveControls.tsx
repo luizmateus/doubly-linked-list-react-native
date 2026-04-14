@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
 import { theme } from "../../theme";
 
 type Props = {
@@ -28,11 +27,9 @@ export const RemoveControls: React.FC<Props> = ({
           keyboardType="numeric"
           style={styles.input}
         />
-        <Button
-          label="Remove by Index"
-          variant="danger"
-          size="sm"
-          style={styles.button}
+        <TouchableOpacity
+          style={[styles.button, styles.danger]}
+          activeOpacity={0.75}
           onPress={() => {
             const idx = Number(indexInput);
             if (!isNaN(idx)) {
@@ -40,7 +37,9 @@ export const RemoveControls: React.FC<Props> = ({
               setIndexInput("");
             }
           }}
-        />
+        >
+          <Text style={styles.label}>Remove by Index</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.row}>
         <Input
@@ -50,11 +49,9 @@ export const RemoveControls: React.FC<Props> = ({
           keyboardType="numeric"
           style={styles.input}
         />
-        <Button
-          label="Remove by Value"
-          variant="danger"
-          size="sm"
-          style={styles.button}
+        <TouchableOpacity
+          style={[styles.button, styles.danger]}
+          activeOpacity={0.75}
           onPress={() => {
             const val = Number(valueInput);
             if (!isNaN(val)) {
@@ -62,19 +59,17 @@ export const RemoveControls: React.FC<Props> = ({
               setValueInput("");
             }
           }}
-        />
+        >
+          <Text style={styles.label}>Remove by Value</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.row}>
-        {/* Spacer keeps "Remove Duplicates" button aligned to the button column */}
-        <View style={styles.inputSpacer} />
-        <Button
-          label="Remove Duplicates"
-          variant="secondary"
-          size="sm"
-          style={styles.button}
-          onPress={onRemoveDuplicates}
-        />
-      </View>
+      <TouchableOpacity
+        style={[styles.button, styles.secondary, styles.fullWidth]}
+        activeOpacity={0.75}
+        onPress={onRemoveDuplicates}
+      >
+        <Text style={styles.label}>Remove Duplicates</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -96,11 +91,30 @@ const styles = StyleSheet.create({
     margin: 0,
     marginRight: theme.spacing.sm,
   },
-  inputSpacer: {
-    width: INPUT_WIDTH + theme.spacing.sm,
-  },
   button: {
     flex: 1,
-    margin: 0,
+    paddingVertical: theme.spacing.sm + 1,
+    paddingHorizontal: theme.spacing.sm + 2,
+    borderRadius: theme.borderRadius.sm,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  fullWidth: {
+    flex: 0,
+    marginTop: theme.spacing.xs,
+  },
+  danger: {
+    backgroundColor: theme.colors.danger,
+  },
+  secondary: {
+    backgroundColor: theme.colors.surfaceElevated,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+  },
+  label: {
+    color: theme.colors.text,
+    fontWeight: theme.fontWeight.semibold,
+    fontSize: theme.fontSize.sm,
+    letterSpacing: 0.2,
   },
 });
