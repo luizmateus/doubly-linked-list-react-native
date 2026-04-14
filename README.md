@@ -94,3 +94,8 @@ App
 ```
 
 Styling is driven by a single [`src/theme.ts`](src/theme.ts) token file (colors, spacing, radii, shadows, font weights) so there are no magic numbers scattered through component files.
+
+### Screenshot (Final result)
+
+<img width="1179" height="2556" alt="Simulator Screenshot - iPhone 14 Pro - 2026-04-14 at 18 44 25" src="https://github.com/user-attachments/assets/2a15ee9b-42f9-4303-85cc-32506c60a8eb" />
+
